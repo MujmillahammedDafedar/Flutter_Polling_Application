@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:poll/screens/mainPage.dart';
 
 class StartinPage extends StatefulWidget {
   @override
   _StartinPageState createState() => _StartinPageState();
 }
+
+
 
 class _StartinPageState extends State<StartinPage> {
   method() {
@@ -76,7 +79,10 @@ class _StartinPageState extends State<StartinPage> {
                 child: FlatButton(
                   onPressed: () {
                     setState(() {
-                      method();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Home()),
+                      );
                     });
                   },
                   child: Container(
