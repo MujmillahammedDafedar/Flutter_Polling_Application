@@ -75,7 +75,6 @@ class Main extends StatelessWidget {
                             ),
                             onPressed: (){
                               Navigator.push(context, SlideRightRoute(page: Details()));
-
                             },
                           ),
                         ),

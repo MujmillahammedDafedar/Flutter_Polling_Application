@@ -3,6 +3,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:poll/screens/create_poll.dart';
 import 'package:poll/screens/my_poll.dart';
 import 'package:poll/screens/profile.dart';
+import 'package:poll/screens/trending.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -220,7 +221,8 @@ class _GridState extends State<Grid> {
                 child: InkWell(
                   onTap: () {
                     setState(() {
-                      method();
+                      Navigator.push(context, SlideRightRoute(page: Trending()));
+
                     });
                   },
                   child: Card(
