@@ -11,30 +11,30 @@ class FancyBackgroundApp extends StatelessWidget {
       children: <Widget>[
         Positioned.fill(child: AnimatedBackground()),
         onBottom(AnimatedWave(
-          height: 700,
-          speed: 1.0,
+          height: 200,
+          speed: 2.0,
         )),
         onBottom(AnimatedWave(
-          height: 650,
+          height: 150,
           speed: 0.9,
           offset: pi,
         )),
         onBottom(AnimatedWave(
-          height: 620,
+          height: 100,
           speed: 1.2,
           offset: pi / 2,
         )),
-        Positioned.fill(child: CenteredText()),
+        MainCard(),
       ],
     );
   }
 
   Widget onBottom(Widget child) => Positioned.fill(
-    child: Align(
-      alignment: Alignment.bottomCenter,
-      child: child,
-    ),
-  );
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: child,
+        ),
+      );
 }
 
 class AnimatedWave extends StatelessWidget {
@@ -102,8 +102,7 @@ class AnimatedBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tween = MultiTween<_BgProps>()
-      ..add(
-          _BgProps.color1, Color(0xffD38312).tweenTo(Colors.brown.shade900))
+      ..add(_BgProps.color1, Color(0xffD38312).tweenTo(Colors.brown.shade900))
       ..add(_BgProps.color2, Color(0xffA83279).tweenTo(Colors.brown.shade600));
 
     return MirrorAnimation<MultiTweenValues<_BgProps>>(
@@ -116,29 +115,84 @@ class AnimatedBackground extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    value.get(_BgProps.color1),
-                    value.get(_BgProps.color2)
-                  ])),
+                value.get(_BgProps.color1),
+                value.get(_BgProps.color2)
+              ])),
         );
       },
     );
   }
 }
 
-class CenteredText extends StatelessWidget {
-  const CenteredText({
-    Key key,
-  }) : super(key: key);
+class MainCard extends StatefulWidget {
+
 
   @override
+  _MainCardState createState() => _MainCardState();
+}
+
+
+
+class _MainCardState extends State<MainCard> {
+  // ignore: must_call_super
+  initState(){
+    super.initState();
+
+  }
+  choice(){
+      return InkWell(
+        child: Container(
+          height: 80,
+          child: Card(
+            child: Text("hello"),
+          ),
+        ),
+      );
+      
+
+  }
+  @override
   Widget build(BuildContext context) {
-   return SafeArea(
-     child: Container(
-       height: 500.0,
-       
+    return SafeArea(
+      child: Center(
+        child: Container(
+          width: double.maxFinite,
+          height: 350.0,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.brown.shade900, width: 1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            color: Colors.brown.shade600,
+            elevation: 10.0,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Is Governement of karnataka promoted to degree students?",
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.brown.shade200,
+                        fontFamily: "PTs2",
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+               
+                Column(
+                  children: [
+                    choice(),
+                    choice(),
+                    choice(),
+                    choice()
 
-
-     ),
-   );
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
